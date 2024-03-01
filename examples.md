@@ -24,7 +24,7 @@
         - The Persistence API in JavaEE has the concept of datasources and persistence units. These are abstractions of the underlying databases for ORM purposes, and they need to be configured. In JavaEE, XML files are used for this, but in Quarkus all this configuration can (and should) be moved to a single, centralized `*.properties` file.
         - This rule simply looks for the existence of the XML configuration rules. I am hoping that the extensive message in the rule will be enough for the LLM to generate a proper solution, but it still needs to be tested.
     - persistence-to-quarkus-00011
-        - Applications to test: greeter and 
+        - Applications to test: greeter and tasks-qute
         - This is a rule to remove an unneeded (and illegal) `@Produces` annotation on the `@EntityManager`. Curious to see if the LLM will suggest to add the Qualifier, as explained in the message.
 
 
