@@ -43,4 +43,41 @@
         pattern: persistence\.xml
     - builtin.file:
         pattern: .*-ds\.xml
-
+- category: potential
+  customVariables: []
+  description: '@Produces cannot annotate an EntityManager'
+  effort: 1
+  labels:
+  - konveyor.io/source=java-ee
+  - konveyor.io/source=jakarta-ee
+  - konveyor.io/target=quarkus
+  links:
+  - title: Using Hibernate ORM and Jakarta persistence
+    url: https://quarkus.io/guides/hibernate-orm#persistence-xml
+  - title: Setting up and configuring Hibernate ORM
+    url: https://quarkus.io/guides/hibernate-orm#setting-up-and-configuring-hibernate-orm
+  message: "In JavaEE/JakartaEE, using `@PersistenceContext` was needed in order to
+    inject a data source. Quarkus, on the other hand,\n will create the bean automatically
+    just by correctly setting up your datasource. This makes having a `@Produces`
+    annotation\n on the `EntityManager` illegal in Quarkus.\n \n If you are using
+    a `@Produces` annotation for your EntityManager, and it is not needed after configuring
+    your datasource, remove it and `@Inject` the EntityManager.\n Otherwise, if the
+    producer is still needed, please create a qualification for your produced `EntityManager`,
+    as well as every injection point for the EM.\n \n For instance, you can create
+    an `ExtendedContext` qualifier:\n ```\n @Qualifier\n @Target({{ ElementType.TYPE,
+    ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER }})\n @Retention(RetentionPolicy.RUNTIME)\n
+    public @interface ExtendedContext {{ ... }}\n ```\n and then inject your entity
+    managers:\n ```\n @ExtendedContext\n public EntityManager getEm() {{\n return
+    em;\n }}\n ```"
+  ruleID: persistence-to-quarkus-00011
+  when:
+    and:
+    - java.referenced:
+        location: IMPORT
+        pattern: javax.enterprise.inject.Produces
+      as: file
+      ignore: true
+    - java.referenced:
+        location: IMPORT
+        pattern: javax.persistence.EntityManager
+      from: file
