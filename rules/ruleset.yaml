@@ -1,0 +1,2 @@
+description: This ruleset gives hints to migrate persistence related issues to Quarkus.
+  Applies for both javax and jakarta namespaces.

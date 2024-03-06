@@ -58,7 +58,7 @@
     url: https://quarkus.io/guides/hibernate-orm#setting-up-and-configuring-hibernate-orm
   message: "In JavaEE/JakartaEE, using `@PersistenceContext` was needed in order to
     inject a data source. Quarkus, on the other hand,\n will create the bean automatically
-    just by correctly setting up your datasource. This makes having a `@Produces`
+    just by correctly setting up your datasource, so the `@PersistenceContext` annotation can be removed. \nThis also makes having a `@Produces`
     annotation\n on the `EntityManager` illegal in Quarkus.\n \n If you are using
     a `@Produces` annotation for your EntityManager, and it is not needed after configuring
     your datasource, remove it and `@Inject` the EntityManager.\n Otherwise, if the
