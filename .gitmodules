@@ -1,3 +1,6 @@
 [submodule "coolstore-examples/eap-coolstore-monolith"]
 	path = coolstore-examples/eap-coolstore-monolith
 	url = git@github.com:jmle/eap-coolstore-monolith.git
+[submodule "coolstore-examples/coolstore"]
+	path = coolstore-examples/coolstore
+	url = git@github.com:konveyor-ecosystem/coolstore.git
