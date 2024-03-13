@@ -1,0 +1,3 @@
+[submodule "coolstore-examples/eap-coolstore-monolith"]
+	path = coolstore-examples/eap-coolstore-monolith
+	url = git@github.com:jmle/eap-coolstore-monolith.git
