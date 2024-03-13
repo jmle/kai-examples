@@ -1,4 +1,4 @@
-# Can be used
+- category: mandatory
   customVariables: []
   description: JMS is not supported in Quarkus
   effort: 5
@@ -27,8 +27,7 @@
         name: javax.jms.javax.jms-api
     - java.dependency:
         lowerbound: 0.0.0
-        name: org.jboss.spec.javax.jms.jboss-jms-api_2.0_spec
-# Can be used        
+        name: org.jboss.spec.javax.jms.jboss-jms-api_2.0_spec    
 - category: mandatory
   customVariables: []
   description: '@MessageDriven - EJBs are not supported in Quarkus'
@@ -51,7 +50,6 @@
     - java.referenced:
         location: ANNOTATION
         pattern: jakarta.ejb.MessageDriven
-# Can be used, although the konveyor rule is not as specific as the windup one
 - category: mandatory
   customVariables: []
   description: Configure message listener method with @Incoming
@@ -82,7 +80,6 @@
     - java.referenced:
         location: ANNOTATION
         pattern: jakarta.ejb.ActivationConfigProperty
-# Can be used
 - category: mandatory
   customVariables: []
   description: JMS' Queue must be replaced with an Emitter
@@ -135,7 +132,6 @@
     - java.referenced:
         location: FIELD_DECLARATION
         pattern: jakarta.jms.Topic
-# Can be used, although probably many matches
 - category: mandatory
   customVariables: []
   description: JMS is not supported in Quarkus
