@@ -42,18 +42,18 @@ Legend:
 ### 2. Persistence to Quarkus
 - Abstract: The persistence API of JavaEE provides all sorts of utilities for accessing databases in an object oriented manner (object-relational mapping and such). It is [100% supported](https://docs.google.com/spreadsheets/d/1Xt62NAoga6ZXjR3y0LsRc0npgxwSyQFZ9TlpzYmRdoY/edit#gid=0&range=C15), but still needs to be migrated.
 - Rules:
-    - persistence-to-quarkus-00000 (🔴 - in this case the properties have been left implicit, could be added?)
+    - persistence-to-quarkus-00000 (🟢)
         - The Persistence API in JavaEE has the concept of datasources and persistence units. These are abstractions of the underlying databases for ORM purposes, and they need to be configured. In JavaEE, XML files are used for this, but in Quarkus all this configuration can (and should) be moved to a single, centralized `*.properties` file.
         - This rule simply looks for the existence of the XML configuration rules. I am hoping that the extensive message in the rule will be enough for the LLM to generate a proper solution, but it still needs to be tested.
         - Triggered in:
           - [src/main/resources/META-INF/persistence.xml](https://github.com/mathianasj/eap-coolstore-monolith/blob/main/src/main/resources/META-INF/persistence.xml)
         - Migrated as:
           - [https://github.com/mathianasj/eap-coolstore-monolith/blob/quarkus-migration/src/main/resources/application.properties](https://github.com/mathianasj/eap-coolstore-monolith/blob/quarkus-migration/src/main/resources/application.properties)
-    - persistence-to-quarkus-00011 (🔴 - not present, studying the possibility of adding it artificially)
+    - persistence-to-quarkus-00011 (🟢)
         - This is a rule to remove an unneeded (and illegal) `@Produces` annotation on the `@EntityManager`. Also removes `@PersistenceContext` and tells about the possible need to create a Qualifier for the `EntityManager`.
 
 ### 3. Remote EJB to Quarkus
 - Abstract: Remote EJBs are Enterprise Java Beans which can be accessed from a different JVM than that on which their application is being run. This other JVM can be in the same virtual/physical machine or in another. They are not supported in Quarkus, and therefore we recommend to replace them with an equivalent REST service.
 - Rules:
-  - remote-ejb-to-quarkus-00000 (🔴 - waiting for implementation in coolstore)
+  - remote-ejb-to-quarkus-00000 (🟢)
     - The javax/jakarta `@Remote` annotation indicates the declaration of a Remote EJB. This bean must be transformed into a REST service. In order to do so, several steps must be taken. They are indicated in the description of the rule.
